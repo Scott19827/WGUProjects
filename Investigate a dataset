@@ -1,0 +1,40 @@
+
+
+
+# After discussing the structure of the data and any problems that need to be
+#   cleaned, perform those cleaning steps in the second part of this section.
+​
+from datetime import datetime as dt
+​
+# Takes a date as a string, and returns a Python datetime object. 
+# If there is no date given, returns None
+def parse_date(date):
+    if date == '':
+        return None
+    else:
+        return dt.strptime(date, '%m/-%d/-%y')
+    
+# Clean up data in the tmdbmovies table
+#for movie in tmdbmovies:
+    #movie['release_date'] = parse_date(movie['release_date'])
+    
+for movie in tmdbmovies:
+    movie['release_date'] = dt.strptime(movie['release_date'], '%m/-%d/-%y')
+
+
+
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-13-3e37173f5f1b> in <module>()
+     17 
+     18 for movie in tmdbmovies:
+---> 19     movie['release_date'] = dt.strptime(movie['release_date'], '%m/-%d/-%y')
+
+c file path in _strptime(data_string, format)
+    330     if not found:
+    331         raise ValueError("time data %r does not match format %r" %
+--> 332                          (data_string, format))
+    333     if len(data_string) != found.end():
+    334         raise ValueError("unconverted data remains: %s" %
+
+ValueError: time data '6/9/15' does not match format '%m/-%d/-%y'
